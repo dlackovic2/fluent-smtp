@@ -70,6 +70,39 @@ define( 'FLUENTMAIL_AWS_SECRET_ACCESS_KEY', '********************' );</textarea>
                 style="margin-top: 10px;"
             >{{ errors.errors.api_error }}</span>
         </el-form-item>
+
+        <el-form-item>
+            <label for="use-tenant">
+                {{ $t('Use Tenant') }}
+            </label>
+
+            <el-switch
+                id="use-tenant"
+                v-model="connection.use_tenant"
+                active-value="yes"
+                inactive-value="no">
+            </el-switch>
+
+            <span class="small-help-text">
+                {{ $t('Enable AWS SES Tenant support for multi-tenant email sending') }}
+            </span>
+        </el-form-item>
+
+        <el-form-item v-if="connection.use_tenant == 'yes'">
+            <label for="tenant-name">
+                {{ $t('Tenant Name') }}
+            </label>
+
+            <el-input
+                id="tenant-name"
+                v-model="connection.tenant_name"
+                :placeholder="$t('Enter Tenant Name')"
+            />
+
+            <span class="small-help-text">
+                {{ $t('The name of the tenant to use for sending emails') }}
+            </span>
+        </el-form-item>
     </div>
 </template>
 

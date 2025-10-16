@@ -603,13 +603,18 @@ class SimpleEmailService
     }
 
 
-    public function sendRawEmail($sesMessage)
+    public function sendRawEmail($sesMessage, $tenantName = null)
     {
         $ses_request = $this->getRequestHandler('POST');
         $ses_request->setParameter('Action', 'SendRawEmail');
 
         // https://docs.aws.amazon.com/ses/latest/APIReference/API_SendRawEmail.html
         $ses_request->setParameter('RawMessage.Data', $sesMessage);
+
+        // Add TenantName parameter if provided
+        if (!empty($tenantName)) {
+            $ses_request->setParameter('TenantName', $tenantName);
+        }
 
         $ses_response = $ses_request->getResponse();
         if (($ses_response->error === false && $ses_response->code !== 200) || $ses_response->error !== false) {
