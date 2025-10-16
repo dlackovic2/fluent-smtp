@@ -104,8 +104,10 @@ class Handler extends BaseHandler
             }
 
             // Add custom header if configured
-            if (!empty($this->getSetting('custom_header_name')) && !empty($this->getSetting('custom_header_value'))) {
-                $this->phpMailer->addCustomHeader($this->getSetting('custom_header_name'), $this->getSetting('custom_header_value'));
+            $headerName = $this->getSetting('custom_header_name');
+            $headerValue = $this->getSetting('custom_header_value');
+            if (!empty($headerName) && !empty($headerValue)) {
+                $this->phpMailer->addCustomHeader($headerName, $headerValue);
             }
 
             $this->phpMailer->Subject = $this->getSubject();

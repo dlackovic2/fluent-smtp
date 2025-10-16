@@ -36,8 +36,9 @@ class Handler extends BaseHandler
 
         // Get tenant name if use_tenant is enabled
         $tenantName = null;
-        if ($this->getSetting('use_tenant') == 'yes' && !empty($this->getSetting('tenant_name'))) {
-            $tenantName = $this->getSetting('tenant_name');
+        $tenantNameSetting = $this->getSetting('tenant_name');
+        if ($this->getSetting('use_tenant') == 'yes' && !empty($tenantNameSetting)) {
+            $tenantName = $tenantNameSetting;
         }
 
         $this->response = $ses->sendRawEmail($mime, $tenantName);
