@@ -611,9 +611,10 @@ class SimpleEmailService
         // https://docs.aws.amazon.com/ses/latest/APIReference/API_SendRawEmail.html
         $ses_request->setParameter('RawMessage.Data', $sesMessage);
 
-        // Add TenantName parameter if provided
+        // Add ConfigurationSetName parameter if tenant name is provided
+        // AWS SES uses Configuration Sets for multi-tenancy and dedicated IP pools
         if (!empty($tenantName)) {
-            $ses_request->setParameter('TenantName', $tenantName);
+            $ses_request->setParameter('ConfigurationSetName', $tenantName);
         }
 
         $ses_response = $ses_request->getResponse();
