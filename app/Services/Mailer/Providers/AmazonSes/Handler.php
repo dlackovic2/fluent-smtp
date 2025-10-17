@@ -34,7 +34,9 @@ class Handler extends BaseHandler
 
         $ses = fluentMailSesConnection($connectionSettings);
 
-        // Get tenant name if use_tenant is enabled
+        // Get tenant ARN if use_tenant is enabled
+        // AWS SES Tenants feature requires FromEmailAddressIdentityArn parameter
+        // Reference: https://docs.aws.amazon.com/ses/latest/dg/tenants.html
         $tenantName = null;
         $tenantNameSetting = $this->getSetting('tenant_name');
         if ($this->getSetting('use_tenant') == 'yes' && !empty($tenantNameSetting)) {
