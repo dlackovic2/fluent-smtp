@@ -34,7 +34,14 @@ class Handler extends BaseHandler
 
         $ses = fluentMailSesConnection($connectionSettings);
 
-        $this->response = $ses->sendRawEmail($mime);
+        // Get tenant name if use_tenant is enabled
+        $tenantName = null;
+        $tenantNameSetting = $this->getSetting('tenant_name');
+        if ($this->getSetting('use_tenant') == 'yes' && !empty($tenantNameSetting)) {
+            $tenantName = $tenantNameSetting;
+        }
+
+        $this->response = $ses->sendRawEmail($mime, $tenantName);
 
         return $this->handleResponse($this->response);
     }

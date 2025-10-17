@@ -24,7 +24,9 @@ return [
                 'password'         => '',
                 'auto_tls'         => 'yes',
                 'encryption'       => 'none',
-                'key_store'        => 'db'
+                'key_store'        => 'db',
+                'custom_header_name'  => '',
+                'custom_header_value' => ''
             ],
             'note'     => '<a href="https://fluentsmtp.com/docs/set-up-fluent-smtp-with-any-host-or-mailer/" target="_blank" rel="noopener">' . __('Read the documentation', 'fluent-smtp') . '</a>' . __(' for how to configure any SMTP with FluentSMTP.', 'fluent-smtp')
         ],
@@ -42,7 +44,9 @@ return [
                 'access_key'       => '',
                 'secret_key'       => '',
                 'region'           => 'us-east-1',
-                'key_store'        => 'db'
+                'key_store'        => 'db',
+                'use_tenant'       => 'no',
+                'tenant_name'      => ''
             ],
             'regions'  => [
                 'us-east-1'      => __('US East (N. Virginia)', 'fluent-smtp'),

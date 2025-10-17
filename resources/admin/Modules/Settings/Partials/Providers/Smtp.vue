@@ -134,6 +134,48 @@ define( 'FLUENTMAIL_SMTP_PASSWORD', '********************' );</textarea>
                 </el-form-item>
             </div>
         </template>
+
+        <el-row :gutter="20" style="margin-top: 20px;">
+            <el-col :span="24">
+                <h4>{{ $t('Custom Email Header') }}</h4>
+                <p class="small-help-text">
+                    {{ $t('Add a custom header to emails sent via SMTP (e.g., X-SES-TENANT for AWS SES with SMTP)') }}
+                </p>
+            </el-col>
+        </el-row>
+
+        <el-row :gutter="20">
+            <el-col :md="12" :sm="24">
+                <el-form-item>
+                    <label for="custom-header-name">
+                        {{ $t('Header Name') }}
+                    </label>
+                    <el-input
+                        id="custom-header-name"
+                        v-model="connection.custom_header_name"
+                        :placeholder="$t('e.g., X-SES-TENANT')"
+                    />
+                    <span class="small-help-text">
+                        {{ $t('Optional: Enter a custom header name') }}
+                    </span>
+                </el-form-item>
+            </el-col>
+            <el-col :md="12" :sm="24">
+                <el-form-item>
+                    <label for="custom-header-value">
+                        {{ $t('Header Value') }}
+                    </label>
+                    <el-input
+                        id="custom-header-value"
+                        v-model="connection.custom_header_value"
+                        :placeholder="$t('Enter header value')"
+                    />
+                    <span class="small-help-text">
+                        {{ $t('Optional: Enter the value for the custom header') }}
+                    </span>
+                </el-form-item>
+            </el-col>
+        </el-row>
     </div>
 </template>
 
